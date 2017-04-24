@@ -1,0 +1,7 @@
+dist
+/node_modules/
+*.sublime-project
+*.sublime-workspace
+*.log
+.DS_Store
+archive.zip
