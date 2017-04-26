@@ -1,6 +1,6 @@
 # IOpipe Example Projects
 
-Get started with AWS Lambda & IOpipe quickly with these starter projects.
+Get started with AWS Lambda & [IOpipe](https://iopipe.com) quickly with these starter projects.
 
 ## Node.js
 
