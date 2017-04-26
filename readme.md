@@ -30,3 +30,5 @@ If you don't, create an issue here on GitHub, or reach out to us at support@iopi
 ## Python
 
 Use `python/handler.py` as a starting point for your serverless function wrapped with IOpipe.
+
+See the [python library repo](https://github.com/iopipe/iopipe-python) for further instructions.
