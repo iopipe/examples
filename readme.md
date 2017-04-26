@@ -26,3 +26,7 @@ When you run a test of your new Lambda function, you should see an output of:
 ```
 
 If you don't, create an issue here on GitHub, or reach out to us at support@iopipe.com
+
+## Python
+
+Use `python/handler.py` as a starting point for your serverless function wrapped with IOpipe.
