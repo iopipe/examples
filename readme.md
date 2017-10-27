@@ -12,7 +12,7 @@ cd node && npm run pkg
 
 This will download the dependencies for `iopipe` into your `node_modules` folder and package the assets into `archive.zip`.
 
-Point your Lambda handler to `index.handler` (default) if you're using Node >= 6.10. If you need es5 formatted code (<= 6.10), point to `es5.handler`.
+Point your Lambda handler to `index.handler` for Node > v6 (default).
 
 Upload the `archive.zip` archive.
 
@@ -28,6 +28,11 @@ When you run a test of your new Lambda function, you should see an output of:
 ```
 
 If you don't, create an issue here on GitHub, or reach out to us at support@iopipe.com
+
+The available handler examples are:
+- index.js : Standard hello world for Node v6+
+- es5.js : Hello world for Node < v6
+- express.js : A lambda built to run from an express app using `aws-serverless-express`
 
 ## Python
 
