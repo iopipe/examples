@@ -1,14 +1,14 @@
 const express = require('express');
-const lambdaExpress = require('aws-serverless-express');
+const awsServerlessExpress = require('aws-serverless-express');
 const iopipe = require('iopipe')();
 
 const app = express();
-const server = lambdaExpress.createServer(app);
+const server = awsServerlessExpress.createServer(app);
 
 let invocationContext = {};
 
 // original lambda invocation context middleware
-// useful for iopipe plugins (context.iopipe.log)
+// useful for iopipe methods and plugins (context.iopipe.log)
 // or original aws methods (context.getRemainingTimeInMillis)
 app.use((req, res, next) => {
   req.context = invocationContext;
@@ -22,5 +22,5 @@ app.get('/', (req, res) => {
 
 exports.handler = iopipe((event, context) => {
   invocationContext = context;
-  return lambdaExpress.proxy(server, event, context);
+  return awsServerlessExpress.proxy(server, event, context);
 });
