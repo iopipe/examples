@@ -1,6 +1,4 @@
-const iopipe = require('iopipe')();
-
-exports.handler = iopipe((event, context, callback) => {
+exports.handler = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
@@ -9,4 +7,4 @@ exports.handler = iopipe((event, context, callback) => {
     })
   };
   callback(null, response);
-});
+};

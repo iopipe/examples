@@ -10,14 +10,20 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@iopipe/iopipe": "^1.5.0",
-    "@iopipe/profiler": "^0.1.0"
+    "@iopipe/profiler": "^0.1.0",
+    "serverless-plugin-iopipe": "^0.3.3"
   },
   "devDependencies": {
     "serverless": "^1.23.0"
   },
   "iopipe": {
     "plugins": [
-      ["@iopipe/profiler", {"enabled": false}]
+      [
+        "@iopipe/profiler",
+        {
+          "enabled": false
+        }
+      ]
     ]
   }
 }

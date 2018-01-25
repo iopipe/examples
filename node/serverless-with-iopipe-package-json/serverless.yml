@@ -1,4 +1,4 @@
-service: with-iopiperc
+service: sls-plugin-with-iopipe-package-json
 provider:
   name: aws
   runtime: nodejs6.10
@@ -9,3 +9,7 @@ provider:
 functions:
   index:
     handler: index.handler
+plugins:
+  - serverless-plugin-iopipe
+custom:
+  iopipeNoVerify: true
