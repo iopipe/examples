@@ -1,0 +1,29 @@
+{
+  "name": "iopipe-example-serverless-with-iopiperc",
+  "version": "0.0.0",
+  "description": "Using serverless framework with iopiperc configuration file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IOpipe <dev@iopipe.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@iopipe/iopipe": "^1.5.0",
+    "@iopipe/profiler": "^0.1.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.23.0",
+    "serverless-plugin-iopipe": "^0.3.3"
+  },
+  "iopipe": {
+    "plugins": [
+      [
+        "@iopipe/profiler",
+        {
+          "enabled": false
+        }
+      ]
+    ]
+  }
+}

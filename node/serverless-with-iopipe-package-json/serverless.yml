@@ -1,0 +1,15 @@
+service: sls-plugin-with-iopipe-package-json
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-west-2
+  timeout: 30
+  environment:
+    IOPIPE_TOKEN: ${env:IOPIPE_TOKEN}
+functions:
+  index:
+    handler: index.handler
+plugins:
+  - serverless-plugin-iopipe
+custom:
+  iopipeNoVerify: true
