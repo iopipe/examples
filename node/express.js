@@ -1,6 +1,6 @@
 const express = require('express');
 const awsServerlessExpress = require('aws-serverless-express');
-const iopipe = require('iopipe')();
+const iopipe = require('@iopipe/iopipe')();
 
 const app = express();
 const server = awsServerlessExpress.createServer(app);

@@ -1,4 +1,4 @@
-const iopipe = require('iopipe')();
+const iopipe = require('@iopipe/iopipe')();
 
 exports.handler = iopipe((event, context, callback) => {
   const response = {
