@@ -1,7 +1,7 @@
 const iopipe = require('@iopipe/iopipe')();
 
 // modularize the tracing functionality for use in other modules outside of "main"
-const { setContext, label, log } = require('./iopipe-helper');
+const { setContext, label, metric } = require('./iopipe-helper');
 
 // normal lambda work
 const { typeOne, typeTwo } = require('./dog');
@@ -19,8 +19,8 @@ exports.handler = iopipe(async (event, context) => {
   breeds.forEach(label);
 
   // add IOpipe custom metrics for each url
-  log('pongo-url', pongo);
-  log('perdita-url', perdita);
+  metric('pongo-url', pongo);
+  metric('perdita-url', perdita);
 
   context.succeed(JSON.stringify({ pongo, perdita }));
 });

@@ -1,27 +1,25 @@
-const top = {
-  context: {
-    iopipe: {
-      label: () => {},
-      log: () => {},
-      mark: { start: () => {}, end: () => {} }
-    }
+let context = {
+  iopipe: {
+    label: function defaultLabel() {},
+    log: function defaultLog() {},
+    mark: { start: () => {}, end: () => {} }
   }
 };
 
 // simple setter
 const setContext = ctx => {
-  top.context = ctx || top.context;
+  context = ctx || context;
 };
 
 // tracing methods
-const start = top.context.iopipe.mark.start;
-const end = top.context.iopipe.mark.end;
+const start = (...args) => context.iopipe.mark.start(...args);
+const end = (...args) => context.iopipe.mark.end(...args);
 
-// log from this module
-const log = top.context.iopipe.log;
+// custom metrics from this module
+const metric = (...args) => context.iopipe.metric(...args);
 
 // use IOpipe labels from this module
-const label = top.context.iopipe.label;
+const label = (...args) => context.iopipe.label(...args);
 
 // easy to create your own flavor of tracing, this one accepts a promise-based fn and a name and wraps a function automatically
 const auto = async (fn = () => {}, nameStr) => {
@@ -36,7 +34,7 @@ module.exports = {
   auto,
   end,
   label,
-  log,
+  metric,
   setContext,
   start
 };
