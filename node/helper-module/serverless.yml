@@ -1,4 +1,4 @@
-service: example-tracing-as-module-can-delete
+service: example-helper-module
 provider:
   name: aws
   runtime: nodejs8.10
