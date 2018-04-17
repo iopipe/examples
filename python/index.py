@@ -1,12 +1,12 @@
 import json
 import os
 
-from iopipe.iopipe import IOpipe
+from iopipe import IOpipe
 
-iopipe = IOpipe(os.environ['IOPIPE_TOKEN'])
+iopipe = IOpipe()
 
 
-@iopipe.decorator
+@iopipe
 def handler(event, context):
     body = {
       'message': 'Your function executed successfully!',
