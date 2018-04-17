@@ -1,0 +1,10 @@
+service: example-helper-module
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-west-2
+  environment:
+    IOPIPE_TOKEN: ${env:IOPIPE_TOKEN}
+functions:
+  index:
+    handler: index.handler
