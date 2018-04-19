@@ -1,0 +1,22 @@
+service: examples
+
+provider:
+  name: aws
+  runtime: java8
+  region: us-west-2
+
+package:
+  artifact: target/iopipe-examples-master.jar
+
+functions:
+  hello:
+    handler: com.iopipe.examples.Hello
+    environment:
+      IOPIPE_TOKEN: ${env:IOPIPE_TOKEN}
+      # Uncomment the following line to enable profiling
+      # IOPIPE_PROFILER_ENABLE: true
+
+  manualHello:
+    handler: com.iopipe.examples.ManualHello
+    environment:
+      IOPIPE_TOKEN: ${env:IOPIPE_TOKEN}
