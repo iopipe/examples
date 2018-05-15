@@ -62,3 +62,40 @@ When you run a test of your new Lambda function, you should see an output of:
 If you don't, create an issue here on GitHub, or reach out to us at support@iopipe.com
 
 See the [python library repo](https://github.com/iopipe/iopipe-python) for further instructions.
+
+## Java
+
+You can run the example by running the following:
+
+
+```
+# Go to the Java directory
+cd java
+# Install dependencies
+mvn install
+# Package the code into target/ for serverless framework
+mvn package
+# Deploy with serverless framework
+sls deploy
+# Invoke the function with the name "Friend"
+sls invoke -f hello -d Friend
+```
+
+These classes contain various examples which may be used:
+
+ * `com.iopipe.examples.Hello`
+   * Extends `com.iopipe.SimpleRequestHandlerWrapper`
+ * `com.iopipe.examples.ManualHello`
+   * Creates an instance of `IOpipeService` then invokes the lambda.
+ * `com.iopipe.examples.Lowercase`
+   * Extends `com.iopipe.SimpleRequestStreamHandlerWrapper`
+ * `com.iopipe.examples.APIGatewayExample`
+   * Provides an example which utilizes API Gateway.
+
+For reference `PlainHello` does not integrate with IOpipe:
+
+ * `com.iopipe.examples.PlainHello`
+   * Implements `com.amazonaws.services.lambda.runtime.RequestHandler`.
+
+See the [Java agent repository](https://github.com/iopipe/iopipe-java) for further instructions.
+
