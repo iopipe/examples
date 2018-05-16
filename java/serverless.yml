@@ -14,7 +14,7 @@ functions:
     environment:
       IOPIPE_TOKEN: ${env:IOPIPE_TOKEN}
       # Uncomment the following line to enable profiling
-      # IOPIPE_PROFILER_ENABLE: true
+      # IOPIPE_PROFILER_ENABLED: true
 
   manualHello:
     handler: com.iopipe.examples.ManualHello
