@@ -67,6 +67,8 @@ See the [python library repo](https://github.com/iopipe/iopipe-python) for furth
 
 You can run the example by running the following:
 
+For Maven, run:
+
 
 ```
 # Go to the Java directory
@@ -76,6 +78,21 @@ mvn install
 # Package the code into target/ for serverless framework
 mvn package
 # Deploy with serverless framework
+sls deploy
+# Invoke the function with the name "Friend"
+sls invoke -f hello -d Friend
+```
+
+For Gradle, this requires that `serverless.yml` be slightly modified because
+Gradle places the JAR it creates at an alternative location, after performing
+that step you may run:
+
+```
+# Go to the Java directory
+cd java
+# Build a shadowJar with Gradle
+gradle shadowJar
+# Deploy the project
 sls deploy
 # Invoke the function with the name "Friend"
 sls invoke -f hello -d Friend

@@ -1,0 +1,44 @@
+// This is the Gradle build script for the example project, it assumes the
+// standard Maven project layout.
+// Building with this script for a JAR which runs on AWS: `gradle shadowJar`
+// The JAR which will be output: `build/libs/iopipe-examples-1.0-all.jar`
+// This is the JAR which should be uploaded to AWS.
+
+plugins {
+	// In order to run on AWS we must perform a task similer to that of the
+	// shade plugin in Maven, because AWS expects only a single JAR containing
+	// all the classes which are needed. Information on the plugin is here:
+	// https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow
+	// Run this with `gradle shadowJar`
+	// Your JAR will be called: build/libs/iopipe-examples-1.0-all.jar
+	id 'com.github.johnrengelman.shadow' version '2.0.4'
+	
+	// This is a normal Gradle Java project, Gradle for the most part should
+	// handle all the compilation as needed.
+	// This pretty much assumes your project will be using the standard Java
+	// project layout which is additionally compatible with Maven.
+	id 'java'
+}
+
+// This is just the name of this project
+archivesBaseName = 'iopipe-examples'
+group = 'com.iopipe.example'
+version = '1.0'
+
+// IOpipe exists in Maven Central and as such the repository must be used here
+repositories {
+	mavenCentral()
+}
+
+// This group is highly recommended because it is very possible that your
+// dependencies will be declaring services and all of them will likely want to
+// be seen by `ServiceLoader`.
+shadowJar {
+	mergeServiceFiles()
+}
+
+// Use the IOpipe library which is included in the build automatically
+dependencies {
+	compile group: 'com.iopipe', name: 'iopipe', version: '1.3.0'
+}
+
