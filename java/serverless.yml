@@ -6,7 +6,11 @@ provider:
   region: us-west-2
 
 package:
+  # Keep this uncommented if you are using Maven, comment if using Gradle
   artifact: target/iopipe-examples-master.jar
+  
+  # Uncomment this if you are using Gradle, comment if using Maven
+  # artifact: build/libs/iopipe-examples-1.0-all.jar
 
 functions:
   hello:
