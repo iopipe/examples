@@ -58,9 +58,66 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>2.3</version>
+        <version>3.1.1</version>
         <configuration>
-          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <createDependencyReducedPom>true</createDependencyReducedPom>
+          
+          <!-- Make it tiny! -->
+          <minimizeJar>true</minimizeJar>
+          <filters>
+             <!-- These are needed by the examples to function. -->
+             <!--<filter>
+               <artifact>com.iopipe.example:iopipe-examples</artifact>
+               <includes>**</includes>
+             </filter>-->
+             <filter>
+               <artifact>com.iopipe:iopipe</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>org.glassfish:javax.json</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>org.apache.logging.log4j:*</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-lambda-java-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-lambda-java-events</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-java-sdk-kinesis</artifact>
+               <includes>**</includes>
+             </filter>
+             
+             <!-- These are not needed by AWS as they are pre-included -->
+             <filter>
+               <artifact>com.amazonaws:aws-java-sdk-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-annotations</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor</artifact>
+               <excludes>**</excludes>
+             </filter>
+          </filters>
+          
         </configuration>
         <executions>
           <execution>
