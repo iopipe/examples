@@ -60,16 +60,26 @@
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.1.1</version>
         <configuration>
-          <createDependencyReducedPom>true</createDependencyReducedPom>
           
-          <!-- Make it tiny! -->
+          <!-- The following settings can be used to create a JAR which is -->
+          <!-- smaller in size, this can be used in the event that the JAR -->
+          <!-- is too big for Amazon Lambda. -->
+          <!-- Note that the setup here works for this example project and -->
+          <!-- it may or may not work for other projects if they add more -->
+          <!-- dependencies. Running the resulting JAR may work on some -->
+          <!-- invocations or it may fail on other invocations depending -->
+          <!-- on the classes available that can be initialized. -->
+          <!-- If an invocation fails with NoClassDefFoundError or -->
+          <!-- ExceptionInInitializationError then a class which is -->
+          <!-- required has not been included. Going through the project -->
+          <!-- dependency tree you should be able to determine the project -->
+          <!-- that must be included. -->
+          <!-- Or, this entire section can just not be included in which -->
+          <!-- case any issues that might arrive will not occur. -->
+          <createDependencyReducedPom>true</createDependencyReducedPom>
           <minimizeJar>true</minimizeJar>
           <filters>
-             <!-- These are needed by the examples to function. -->
-             <!--<filter>
-               <artifact>com.iopipe.example:iopipe-examples</artifact>
-               <includes>**</includes>
-             </filter>-->
+             <!-- These are needed by IOpipe and the examples to function. -->
              <filter>
                <artifact>com.iopipe:iopipe</artifact>
                <includes>**</includes>
@@ -117,6 +127,7 @@
                <excludes>**</excludes>
              </filter>
           </filters>
+          <!-- End of JAR size reduction. -->
           
         </configuration>
         <executions>
