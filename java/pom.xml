@@ -61,25 +61,17 @@
         <version>3.1.1</version>
         <configuration>
           
-          <!-- The following settings can be used to create a JAR which is -->
-          <!-- smaller in size, this can be used in the event that the JAR -->
-          <!-- is too big for Amazon Lambda. -->
-          <!-- Note that the setup here works for this example project and -->
-          <!-- it may or may not work for other projects if they add more -->
-          <!-- dependencies. Running the resulting JAR may work on some -->
-          <!-- invocations or it may fail on other invocations depending -->
-          <!-- on the classes available that can be initialized. -->
-          <!-- If an invocation fails with NoClassDefFoundError or -->
-          <!-- ExceptionInInitializationError then a class which is -->
-          <!-- required has not been included. Going through the project -->
-          <!-- dependency tree you should be able to determine the project -->
-          <!-- that must be included. -->
-          <!-- Or, this entire section can just not be included in which -->
-          <!-- case any issues that might arrive will not occur. -->
+          <!-- This following group of settings can be used to reduce the size
+               of the JAR, it is optional and is not required to be used.
+               The setup described here may or may not work depending on the
+               project, if an invocation fails with NoClassDefFoundError or
+               ExceptionInInitializationError then a required dependency is
+               missing and must be explicitely included. -->
           <createDependencyReducedPom>true</createDependencyReducedPom>
           <minimizeJar>true</minimizeJar>
           <filters>
-             <!-- These are needed by IOpipe and the examples to function. -->
+             <!-- These dependencies are required to be included otherwise the
+                  shade plugin will exclude them. -->
              <filter>
                <artifact>com.iopipe:iopipe</artifact>
                <includes>**</includes>
@@ -105,7 +97,8 @@
                <includes>**</includes>
              </filter>
              
-             <!-- These are not needed by AWS as they are pre-included -->
+             <!-- These dependencies are not required and may be excluded
+                  from the JAR, Amazon includes these in the classpath. -->
              <filter>
                <artifact>com.amazonaws:aws-java-sdk-core</artifact>
                <excludes>**</excludes>
