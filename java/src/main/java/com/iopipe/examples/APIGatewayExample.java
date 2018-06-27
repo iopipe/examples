@@ -21,6 +21,10 @@ import javax.json.stream.JsonGenerator;
 public class APIGatewayExample
 	extends SimpleRequestHandlerWrapper<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
 {
+	/** The animal that is valid. */
+	private static final String VALID_ANIMAL =
+		"squirrel";
+	
 	/** Very interesting squirrel facts. */
 	private static final String[] _SQUIRREL_FACTS =
 		{
@@ -54,7 +58,7 @@ public class APIGatewayExample
 			// Only accept squirrel facts when they want to be gotten
 			Map<String, String> requests = __val.getQueryStringParameters();
 			if (!"GET".equals(__val.getHttpMethod()) || requests == null ||
-				!"squirrel".equals(requests.get("animal")))
+				!VALID_ANIMAL.equals(requests.get("animal")))
 			{
 				rv.setStatusCode(400);
 				
@@ -62,9 +66,12 @@ public class APIGatewayExample
 				
 				json.write("error", "Only GET requests with a query for the " +
 					"key 'animal' containing the value 'squirrel' is valid. " +
-					"Example: '?animal=squirrel'.");
+					"Example: '?animal=" + VALID_ANIMAL + "'.");
 				
 				json.writeEnd();
+				
+				// An invalid animal was specified
+				__exec.label("invalid-animal");
 			}
 			
 			// Is okay
@@ -74,10 +81,18 @@ public class APIGatewayExample
 				
 				json.writeStartObject();
 				
-				json.write("fact", _SQUIRREL_FACTS[new Random().nextInt(
-					_SQUIRREL_FACTS.length)]);
+				int id;
+				json.write("fact", _SQUIRREL_FACTS[(id = new Random().nextInt(
+					_SQUIRREL_FACTS.length))]);
 				
 				json.writeEnd();
+				
+				// Write some details about the fact which was given
+				__exec.customMetric("animal", VALID_ANIMAL);
+				__exec.customMetric("fact-id", id);
+				
+				// An animal was valid
+				__exec.label("valid-animal");
 			}
 			
 			// Build JSON body
