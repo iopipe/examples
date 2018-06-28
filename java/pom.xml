@@ -58,9 +58,70 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>2.3</version>
+        <version>3.1.1</version>
         <configuration>
-          <createDependencyReducedPom>false</createDependencyReducedPom>
+          
+          <!-- This following group of settings can be used to reduce the size
+               of the JAR, it is optional and is not required to be used.
+               The setup described here may or may not work depending on the
+               project, if an invocation fails with NoClassDefFoundError or
+               ExceptionInInitializationError then a required dependency is
+               missing and must be explicitly included. -->
+          <createDependencyReducedPom>true</createDependencyReducedPom>
+          <minimizeJar>true</minimizeJar>
+          <filters>
+             <!-- These dependencies are required to be included otherwise the
+                  shade plugin will exclude them. -->
+             <filter>
+               <artifact>com.iopipe:iopipe</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>org.glassfish:javax.json</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>org.apache.logging.log4j:*</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-lambda-java-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-lambda-java-events</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.amazonaws:aws-java-sdk-kinesis</artifact>
+               <includes>**</includes>
+             </filter>
+             
+             <!-- These dependencies are not required and may be excluded
+                  from the JAR, Amazon includes these in the classpath. -->
+             <filter>
+               <artifact>com.amazonaws:aws-java-sdk-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-annotations</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-core</artifact>
+               <excludes>**</excludes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.dataformat:jackson-dataformat-cbor</artifact>
+               <excludes>**</excludes>
+             </filter>
+          </filters>
+          <!-- End of JAR size reduction. -->
+          
         </configuration>
         <executions>
           <execution>
