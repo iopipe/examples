@@ -12,9 +12,8 @@ import com.iopipe.SimpleRequestHandlerWrapper;
  *
  * @since 2017/12/18
  */
-
 public class Hello
-  extends SimpleRequestHandlerWrapper<String, String>
+	extends SimpleRequestHandlerWrapper<String, String>
 {
 	/**
 	 * {@inheritDoc}
