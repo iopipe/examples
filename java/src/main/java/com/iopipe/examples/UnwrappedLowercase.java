@@ -1,8 +1,7 @@
 package com.iopipe.examples;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import com.iopipe.IOpipeExecution;
-import com.iopipe.SimpleRequestStreamHandlerWrapper;
+import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,18 +11,18 @@ import java.io.OutputStream;
  * characters which have been input. It just translates simple ASCII as an
  * example.
  *
- * @since 2017/12/18
+ * @since 2018/08/16
  */
-public class Lowercase
-	extends SimpleRequestStreamHandlerWrapper
+public class UnwrappedLowercase
+	implements RequestStreamHandler
 {
 	/**
 	 * {@inheritDoc}
-	 * @since 2017/12/18
+	 * @since 2018/08/16
 	 */
 	@Override
-	protected final void wrappedHandleRequest(IOpipeExecution __exec,
-		InputStream __in, OutputStream __out)
+	public final void handleRequest(InputStream __in,
+		OutputStream __out, Context __context)
 		throws IOException
 	{
 		for (;;)

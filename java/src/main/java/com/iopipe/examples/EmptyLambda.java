@@ -1,4 +1,4 @@
-package com.iopipe.examples.EmptyLambda;
+package com.iopipe.examples;
 
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -10,7 +10,7 @@ import com.iopipe.SimpleRequestHandlerWrapper;
  *
  * @since 2018/08/16
  */
-public class Hello
+public class EmptyLambda
 	extends SimpleRequestHandlerWrapper<Object, String>
 {
 	/**
@@ -18,7 +18,7 @@ public class Hello
 	 * @since 2018/08/16
 	 */
 	@Override
-	protected final Object wrappedHandleRequest(IOpipeExecution __exec,
+	protected final String wrappedHandleRequest(IOpipeExecution __exec,
 		Object __input)
 	{
 		return "";
