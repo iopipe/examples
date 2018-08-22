@@ -100,23 +100,31 @@
                <artifact>com.amazonaws:aws-java-sdk-kinesis</artifact>
                <includes>**</includes>
              </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-core</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.datatype:jackson-datatype-joda</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.fasterxml.jackson.core:jackson-annotations</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>joda-time:joda-time</artifact>
+               <includes>**</includes>
+             </filter>
              
              <!-- These dependencies are not required and may be excluded
                   from the JAR, Amazon includes these in the classpath. -->
              <filter>
                <artifact>com.amazonaws:aws-java-sdk-core</artifact>
-               <excludes>**</excludes>
-             </filter>
-             <filter>
-               <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
-               <excludes>**</excludes>
-             </filter>
-             <filter>
-               <artifact>com.fasterxml.jackson.core:jackson-annotations</artifact>
-               <excludes>**</excludes>
-             </filter>
-             <filter>
-               <artifact>com.fasterxml.jackson.core:jackson-core</artifact>
                <excludes>**</excludes>
              </filter>
              <filter>

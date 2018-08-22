@@ -18,7 +18,7 @@ import javax.json.stream.JsonGenerator;
  *
  * @since 2018/05/15
  */
-public class APIGatewayExample
+public class WrappedAPIGatewayExample
 	extends SimpleRequestHandlerWrapper<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
 {
 	/** The animal that is valid. */
