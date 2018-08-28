@@ -96,18 +96,21 @@ public class SquirrelFactsAPIGateway
 				
 				json.writeStartObject();
 				
+				String fact;
 				int id;
-				json.write("fact", _SQUIRREL_FACTS[(id = new Random().nextInt(
-					_SQUIRREL_FACTS.length))]);
+				json.write("fact", (fact = _SQUIRREL_FACTS[(id = new Random().nextInt(
+					_SQUIRREL_FACTS.length))]));
 				
 				json.writeEnd();
 				
 				// Write some details about the fact which was given
 				exec.customMetric("animal", VALID_ANIMAL);
 				exec.customMetric("fact-id", id);
+				exec.customMetric("fact-string", fact);
 				
 				// An animal was valid
 				exec.label("valid-animal");
+				exec.label("fact-" + id);
 			}
 			
 			// Build JSON body
