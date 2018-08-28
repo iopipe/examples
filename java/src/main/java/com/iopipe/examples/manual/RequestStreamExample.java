@@ -1,4 +1,4 @@
-package com.iopipe.examples;
+package com.iopipe.examples.manual;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.iopipe.IOpipeExecution;
@@ -11,6 +11,8 @@ import java.io.OutputStream;
  * This request handler takes the given input stream and lowercases all
  * characters which have been input. It just translates simple ASCII as an
  * example.
+ *
+ * This example uses {@link SimpleRequestStreamHandlerWrapper}.
  *
  * @since 2017/12/18
  */
@@ -26,6 +28,8 @@ public class WrappedLowercase
 		InputStream __in, OutputStream __out)
 		throws IOException
 	{
+		int count = 0;
+		
 		for (;;)
 		{
 			int c = __in.read();
@@ -37,5 +41,7 @@ public class WrappedLowercase
 				c = (c - 'A') + 'a';
 			__out.write(c);
 		}
+		
+		__exec.customMetric
 	}
 }

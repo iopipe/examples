@@ -1,4 +1,4 @@
-package com.iopipe.examples;
+package com.iopipe.examples.manual;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.iopipe.IOpipeExecution;
@@ -7,12 +7,14 @@ import com.iopipe.plugin.trace.TraceUtils;
 import com.iopipe.SimpleRequestHandlerWrapper;
 
 /**
- * This class wraps the simple request handler and prefixes "Hello" to
+ * This class wraps the simple request handler and prefixes "hello" to
  * a string input.
+ *
+ * This example uses {@link SimpleRequestHandlerWrapper}.
  *
  * @since 2017/12/18
  */
-public class Hello
+public class RequestExample
 	extends SimpleRequestHandlerWrapper<String, String>
 {
 	/**
@@ -41,7 +43,7 @@ public class Hello
 			__exec.customMetric("result", (long)result);
 		}
 
-		// Say hello!
-		return "Hello " + name + "!";
+		// Say RequestExample!
+		return "hello " + name + "!";
 	}
 }

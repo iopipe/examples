@@ -1,4 +1,4 @@
-package com.iopipe.examples;
+package com.iopipe.examples.manual;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -9,12 +9,15 @@ import com.iopipe.plugin.trace.TraceUtils;
 /**
  * This class wraps the simple request handler and just prefixes "Hello" to
  * an input object containing {name:"Foo"}
- * This manually initializes the IOpipe service.
+ *
+ * This manually initializes the IOpipe service by initializing the wrapper
+ * and then using the invoke method.
  *
  * @since 2017/12/18
  */
-public class ManualHello
-	implements RequestHandler<String, String> {
+public class ServiceRunExample
+	implements RequestHandler<String, String>
+{
 	/**
 	 * {@inheritDoc}
 	 * @since 2017/12/13
