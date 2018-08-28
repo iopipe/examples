@@ -1,8 +1,8 @@
-package com.iopipe.examples;
+package com.iopipe.examples.manual;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 import com.iopipe.IOpipeExecution;
+import com.iopipe.SimpleRequestStreamHandlerWrapper;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,24 +12,22 @@ import java.io.OutputStream;
  * characters which have been input. It just translates simple ASCII as an
  * example.
  *
- * @since 2018/08/16
+ * This example uses {@link SimpleRequestStreamHandlerWrapper}.
+ *
+ * @since 2017/12/18
  */
-public class Lowercase
-	implements RequestStreamHandler
+public class RequestStreamExample
+	extends SimpleRequestStreamHandlerWrapper
 {
 	/**
 	 * {@inheritDoc}
-	 * @since 2018/08/16
+	 * @since 2017/12/18
 	 */
 	@Override
-	public final void handleRequest(InputStream __in,
-		OutputStream __out, Context __context)
+	protected final void wrappedHandleRequest(IOpipeExecution __exec,
+		InputStream __in, OutputStream __out)
 		throws IOException
 	{
-		IOpipeExecution exec = IOpipeExecution.currentExecution();
-		
-		int total = 0,
-			lowercased = 0;
 		for (;;)
 		{
 			int c = __in.read();
@@ -38,16 +36,8 @@ public class Lowercase
 				break;
 			
 			if (c >= 'A' && c <= 'Z')
-			{
 				c = (c - 'A') + 'a';
-				lowercased++;
-			}
-			
 			__out.write(c);
-			total++;
 		}
-		
-		exec.customMetric("total", total);
-		exec.customMetric("lowercased", lowercased);
 	}
 }

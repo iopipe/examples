@@ -3,8 +3,8 @@ package com.iopipe.examples;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iopipe.IOpipeExecution;
-import com.iopipe.SimpleRequestHandlerWrapper;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.LinkedHashMap;
@@ -14,12 +14,13 @@ import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 
 /**
- * This class provides an example of using API Gateway.
+ * This class provides an example of using API Gateway by providing squirrel
+ * facts.
  *
  * @since 2018/05/15
  */
-public class APIGatewayExample
-	extends SimpleRequestHandlerWrapper<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
+public class SquirrelFactsAPIGateway
+	implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
 {
 	/** The animal that is valid. */
 	private static final String VALID_ANIMAL =
@@ -38,18 +39,32 @@ public class APIGatewayExample
 			"They do not hibernate in the winter, hence their need to stash acorns.",
 			"They are omnivores and can and will eat what they can obtain.",
 			"They love consuming junk food even though it is not good for their health.",
-			"Their tails are long.",
+			"Their tails are long and very fluffy.",
 			"They are curious, intelligent, and crafty; if they see food they will find a way to get it even if it takes a few tries.",
+			"Their incisors do not stop growing, so they need to chew on many things to keep them trimmed.",
+			"Squirrels have adapted to urban life, they can and will thrive in cities.",
+			"In the forests they use vocal sounds to communicate while in noisy cities they use signals to communicate.",
+			"Their nests are called dreys and may be in many locations, usually in high places such as trees.",
+			"They generally have a litter size of 3 or 4, although it can be as much as 8.",
+			"The red squirrel in the United Kingdom is endangered, mostly because of the Eastern Gray Squirrel which was introduced into the region.",
+			"The Eastern Gray Squirrel is the most common variant of squirrel in North America.",
+			"Squirrels can come in many colors which can make them very noticeable.",
+			"The flying squirrel has the ability to glide from one location to another.",
+			"They can grow a winter coat during the winter which allows them to keep warm better.",
+			"They love pizza and will drag slices of pizza up to their nests to eat.",
+			"Some squirrels will go after the nests of birds for food if given the opportunity and they are hungry.",
+			"Squirrels will fight and challenge each other over food sources, usually chasing each other away so they can control the food.",
 		};
 	
 	/**
 	 * {@inheritDoc}
-	 * @since 2018/05/15
+	 * @since 2018/08/22
 	 */
 	@Override
-	protected APIGatewayProxyResponseEvent wrappedHandleRequest(IOpipeExecution __exec,
-		APIGatewayProxyRequestEvent __val)
+	public APIGatewayProxyResponseEvent handleRequest(
+		APIGatewayProxyRequestEvent __val, Context __context)
 	{
+		IOpipeExecution exec = IOpipeExecution.currentExecution();
 		APIGatewayProxyResponseEvent rv = new APIGatewayProxyResponseEvent();
 		
 		try (StringWriter out = new StringWriter();
@@ -71,7 +86,7 @@ public class APIGatewayExample
 				json.writeEnd();
 				
 				// An invalid animal was specified
-				__exec.label("invalid-animal");
+				exec.label("invalid-animal");
 			}
 			
 			// Is okay
@@ -81,18 +96,21 @@ public class APIGatewayExample
 				
 				json.writeStartObject();
 				
+				String fact;
 				int id;
-				json.write("fact", _SQUIRREL_FACTS[(id = new Random().nextInt(
-					_SQUIRREL_FACTS.length))]);
+				json.write("fact", (fact = _SQUIRREL_FACTS[(id = new Random().nextInt(
+					_SQUIRREL_FACTS.length))]));
 				
 				json.writeEnd();
 				
 				// Write some details about the fact which was given
-				__exec.customMetric("animal", VALID_ANIMAL);
-				__exec.customMetric("fact-id", id);
+				exec.customMetric("animal", VALID_ANIMAL);
+				exec.customMetric("fact-id", id);
+				exec.customMetric("fact-string", fact);
 				
 				// An animal was valid
-				__exec.label("valid-animal");
+				exec.label("valid-animal");
+				exec.label("fact-" + id);
 			}
 			
 			// Build JSON body
@@ -105,6 +123,8 @@ public class APIGatewayExample
 		{
 			rv.setStatusCode(500);
 			rv.setBody("{\"error\": \"Internal IOException.\"}");
+			
+			throw new RuntimeException(e);
 		}
 		
 		// Always uses JSON

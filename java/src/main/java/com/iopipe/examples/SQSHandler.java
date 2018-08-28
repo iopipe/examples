@@ -1,10 +1,11 @@
 package com.iopipe.examples;
 
+import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.SQSEvent;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iopipe.IOpipeExecution;
 import com.iopipe.plugin.trace.TraceMeasurement;
 import com.iopipe.plugin.trace.TraceUtils;
-import com.iopipe.SimpleRequestHandlerWrapper;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.List;
@@ -15,8 +16,8 @@ import java.util.Objects;
  *
  * @since 2018/08/06
  */
-public class SQS
-  extends SimpleRequestHandlerWrapper<SQSEvent, Object>
+public class SQSHandler
+	implements RequestHandler<SQSEvent, Object>
 {
 	/** The number of processed events since last cold start. */
 	private static final AtomicInteger _COUNT =
@@ -27,15 +28,16 @@ public class SQS
 	 * @since 2018/08/06
 	 */
 	@Override
-	protected final String wrappedHandleRequest(IOpipeExecution __exec,
-		SQSEvent e)
+	public final Object handleRequest(SQSEvent __e, Context __context)
 	{
-		// When was this processed
-		__exec.customMetric("date", LocalDateTime.now().toString());
+		IOpipeExecution exec = IOpipeExecution.currentExecution();
 		
-		try (TraceMeasurement q = TraceUtils.measure(__exec, "processing"))
+		// When was this processed
+		exec.customMetric("date", LocalDateTime.now().toString());
+		
+		try (TraceMeasurement q = TraceUtils.measure(exec, "processing"))
 		{
-			List<SQSEvent.SQSMessage> records = e.getRecords();
+			List<SQSEvent.SQSMessage> records = __e.getRecords();
 			
 			// No records here
 			if (records == null)
@@ -47,7 +49,7 @@ public class SQS
 				String b = m.getBody();
 				
 				if (b != null)
-					__exec.customMetric("message-" + _COUNT.incrementAndGet(),
+					exec.customMetric("message-" + _COUNT.incrementAndGet(),
 						b);
 			}
 			
