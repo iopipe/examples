@@ -3,8 +3,8 @@ package com.iopipe.examples;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iopipe.IOpipeExecution;
-import com.iopipe.SimpleRequestHandlerWrapper;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.LinkedHashMap;
@@ -14,12 +14,13 @@ import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 
 /**
- * This class provides an example of using API Gateway.
+ * This class provides an example of using API Gateway by providing squirrel
+ * facts.
  *
  * @since 2018/05/15
  */
-public class WrappedAPIGatewayExample
-	extends SimpleRequestHandlerWrapper<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
+public class SquirrelFactsAPIGateway
+	implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>
 {
 	/** The animal that is valid. */
 	private static final String VALID_ANIMAL =
@@ -44,12 +45,13 @@ public class WrappedAPIGatewayExample
 	
 	/**
 	 * {@inheritDoc}
-	 * @since 2018/05/15
+	 * @since 2018/08/22
 	 */
 	@Override
-	protected APIGatewayProxyResponseEvent wrappedHandleRequest(IOpipeExecution __exec,
-		APIGatewayProxyRequestEvent __val)
+	public APIGatewayProxyResponseEvent handleRequest(
+		APIGatewayProxyRequestEvent __val, Context __context)
 	{
+		IOpipeExecution exec = IOpipeExecution.currentExecution();
 		APIGatewayProxyResponseEvent rv = new APIGatewayProxyResponseEvent();
 		
 		try (StringWriter out = new StringWriter();
@@ -71,7 +73,7 @@ public class WrappedAPIGatewayExample
 				json.writeEnd();
 				
 				// An invalid animal was specified
-				__exec.label("invalid-animal");
+				exec.label("invalid-animal");
 			}
 			
 			// Is okay
@@ -88,11 +90,11 @@ public class WrappedAPIGatewayExample
 				json.writeEnd();
 				
 				// Write some details about the fact which was given
-				__exec.customMetric("animal", VALID_ANIMAL);
-				__exec.customMetric("fact-id", id);
+				exec.customMetric("animal", VALID_ANIMAL);
+				exec.customMetric("fact-id", id);
 				
 				// An animal was valid
-				__exec.label("valid-animal");
+				exec.label("valid-animal");
 			}
 			
 			// Build JSON body
