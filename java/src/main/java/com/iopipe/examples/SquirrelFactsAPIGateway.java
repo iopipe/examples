@@ -39,8 +39,21 @@ public class SquirrelFactsAPIGateway
 			"They do not hibernate in the winter, hence their need to stash acorns.",
 			"They are omnivores and can and will eat what they can obtain.",
 			"They love consuming junk food even though it is not good for their health.",
-			"Their tails are long.",
+			"Their tails are long and very fluffy.",
 			"They are curious, intelligent, and crafty; if they see food they will find a way to get it even if it takes a few tries.",
+			"Their incisors do not stop growing, so they need to chew on many things to keep them trimmed.",
+			"Squirrels have adapted to urban life, they can and will thrive in cities.",
+			"In the forests they use vocal sounds to communicate while in noisy cities they use signals to communicate.",
+			"Their nests are called dreys and may be in many locations, usually in high places such as trees.",
+			"They generally have a litter size of 3 or 4, although it can be as much as 8.",
+			"The red squirrel in the United Kingdom is endangered, mostly because of the Eastern Gray Squirrel which was introduced into the region.",
+			"The Eastern Gray Squirrel is the most common variant of squirrel in North America.",
+			"Squirrels can come in many colors which can make them very noticeable.",
+			"The flying squirrel has the ability to glide from one location to another.",
+			"They can grow a winter coat during the winter which allows them to keep warm better.",
+			"They love pizza and will drag slices of pizza up to their nests to eat.",
+			"Some squirrels will go after the nests of birds for food if given the opportunity and they are hungry.",
+			"Squirrels will fight and challenge each other over food sources, usually chasing each other away so they can control the food.",
 		};
 	
 	/**
