@@ -121,12 +121,6 @@ public class ScrambleAndDistortStream
 		exec.customMetric("result", dest.toString());
 		
 		// Write the resulting scrambled and fudged string
-		try (Writer w = new OutputStreamWriter(__out, "utf-8"))
-		{
-			w.append(dest);
-			
-			// Write to the output
-			w.flush();
-		}
+		__out.write(dest.toString().getBytes("utf-8"));
 	}
 }
