@@ -107,6 +107,8 @@ public class SquirrelFactsAPIGateway
 		{
 			rv.setStatusCode(500);
 			rv.setBody("{\"error\": \"Internal IOException.\"}");
+			
+			throw new RuntimeException(e);
 		}
 		
 		// Always uses JSON
