@@ -16,8 +16,8 @@ import java.util.Objects;
  *
  * @since 2018/08/06
  */
-public class SQS
-	extends RequestHandlerWrapper<SQSEvent, Object>
+public class SQSHandler
+	implements RequestHandler<SQSEvent, Object>
 {
 	/** The number of processed events since last cold start. */
 	private static final AtomicInteger _COUNT =
@@ -37,7 +37,7 @@ public class SQS
 		
 		try (TraceMeasurement q = TraceUtils.measure(exec, "processing"))
 		{
-			List<SQSEvent.SQSMessage> records = e.getRecords();
+			List<SQSEvent.SQSMessage> records = __e.getRecords();
 			
 			// No records here
 			if (records == null)

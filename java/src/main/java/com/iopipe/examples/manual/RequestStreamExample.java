@@ -16,7 +16,7 @@ import java.io.OutputStream;
  *
  * @since 2017/12/18
  */
-public class WrappedLowercase
+public class RequestStreamExample
 	extends SimpleRequestStreamHandlerWrapper
 {
 	/**
@@ -28,8 +28,6 @@ public class WrappedLowercase
 		InputStream __in, OutputStream __out)
 		throws IOException
 	{
-		int count = 0;
-		
 		for (;;)
 		{
 			int c = __in.read();
@@ -41,7 +39,5 @@ public class WrappedLowercase
 				c = (c - 'A') + 'a';
 			__out.write(c);
 		}
-		
-		__exec.customMetric
 	}
 }
