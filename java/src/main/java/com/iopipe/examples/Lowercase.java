@@ -2,6 +2,7 @@ package com.iopipe.examples;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import com.iopipe.IOpipeExecution;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,7 +14,7 @@ import java.io.OutputStream;
  *
  * @since 2018/08/16
  */
-public class UnwrappedLowercase
+public class Lowercase
 	implements RequestStreamHandler
 {
 	/**
@@ -25,6 +26,10 @@ public class UnwrappedLowercase
 		OutputStream __out, Context __context)
 		throws IOException
 	{
+		IOpipeExecution exec = IOpipeExecution.currentExecution();
+		
+		int total = 0,
+			lowercased = 0;
 		for (;;)
 		{
 			int c = __in.read();
@@ -33,8 +38,16 @@ public class UnwrappedLowercase
 				break;
 			
 			if (c >= 'A' && c <= 'Z')
+			{
 				c = (c - 'A') + 'a';
+				lowercased++;
+			}
+			
 			__out.write(c);
+			total++;
 		}
+		
+		exec.customMetric("total", total);
+		exec.customMetric("lowercased", lowercased);
 	}
 }
