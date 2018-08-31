@@ -124,6 +124,14 @@
                <artifact>org.tinylog:tinylog</artifact>
                <includes>**</includes>
              </filter>
+             <filter>
+               <artifact>org.tinylog:tinylog</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.squareup.okhttp3:okhttp</artifact>
+               <includes>**</includes>
+             </filter>
              
              <!-- These dependencies are not required and may be excluded
                   from the JAR, Amazon includes these in the classpath. -->
