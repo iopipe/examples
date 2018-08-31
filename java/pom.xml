@@ -125,10 +125,6 @@
                <includes>**</includes>
              </filter>
              <filter>
-               <artifact>org.tinylog:tinylog</artifact>
-               <includes>**</includes>
-             </filter>
-             <filter>
                <artifact>com.squareup.okhttp3:okhttp</artifact>
                <includes>**</includes>
              </filter>
