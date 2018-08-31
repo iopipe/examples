@@ -101,6 +101,10 @@
                <includes>**</includes>
              </filter>
              <filter>
+               <artifact>com.amazonaws:aws-java-sdk-s3</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
                <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
                <includes>**</includes>
              </filter>
@@ -118,6 +122,18 @@
              </filter>
              <filter>
                <artifact>joda-time:joda-time</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>org.tinylog:tinylog</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.squareup.okhttp3:okhttp</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
+               <artifact>com.squareup.okio:okio</artifact>
                <includes>**</includes>
              </filter>
              
