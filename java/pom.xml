@@ -101,6 +101,10 @@
                <includes>**</includes>
              </filter>
              <filter>
+               <artifact>com.amazonaws:aws-java-sdk-s3</artifact>
+               <includes>**</includes>
+             </filter>
+             <filter>
                <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
                <includes>**</includes>
              </filter>
