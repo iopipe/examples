@@ -129,7 +129,7 @@
                <includes>**</includes>
              </filter>
              <filter>
-               <artifact>com.squareup.okhttp3:okio</artifact>
+               <artifact>com.squareup.okio:okio</artifact>
                <includes>**</includes>
              </filter>
              
