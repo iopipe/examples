@@ -39,6 +39,6 @@ shadowJar {
 
 // Use the IOpipe library which is included in the build automatically
 dependencies {
-	compile group: 'com.iopipe', name: 'iopipe', version: '1.8.0'
+	compile group: 'com.iopipe', name: 'iopipe', version: '1.9.0'
 }
 
