@@ -9,7 +9,7 @@ import com.iopipe.IOpipeExecution;
  *
  * @since 2018/11/26
  */
-public class Uppercase
+public class InputString
 	implements RequestHandler<String, String>
 {
 	/**
