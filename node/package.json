@@ -20,6 +20,8 @@
   "homepage": "https://github.com/iopipe/examples#readme",
   "dependencies": {
     "@iopipe/iopipe": "^1.5.0",
+    "@types/aws-lambda": "^8.10.17",
+    "@types/node": "^10.12.18",
     "archiver": "^1.3.0",
     "aws-serverless-express": "^3.0.2",
     "express": "^4.16.2"
