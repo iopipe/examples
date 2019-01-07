@@ -6,7 +6,7 @@ interface IOPipeConfig {
 }
 
 interface Mark {
-  tart(label: string): void;
+  start(label: string): void;
   end(label: string): void;
 }
 
