@@ -33,6 +33,7 @@ The available handler examples are:
 - index.js : Standard hello world for Node v6+
 - es5.js : Hello world for Node < v6
 - express.js : A lambda built to run from an express app using `aws-serverless-express`
+- typescript.ts : Standard hello world for TypeScript 
 
 ## Python
 
