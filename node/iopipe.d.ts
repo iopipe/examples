@@ -1,4 +1,3 @@
-
 interface IOPipeConfig {
   debug?: boolean;
   token?: string;

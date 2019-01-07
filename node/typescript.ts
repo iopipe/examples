@@ -1,4 +1,3 @@
-
 import { APIGatewayEvent, Context, ProxyCallback } from 'aws-lambda';
 import iopipe, { mark, metric, label } from '@iopipe/iopipe';
 
