@@ -2,14 +2,18 @@
 interface IOPipeConfig {
   debug?: boolean;
   token?: string;
+  networkTimeout?: number;
+  timeoutWindow?: number;
 }
+
 interface Mark {
-    start(s: string): void;
-    end(s: string): void;
+    start(label: string): void;
+    end(label: string): void;
 }
 
 declare module "@iopipe/iopipe" {
-    export function label(s: string): void;
+    export function label(label: string): void;
+    export function metric(label: string, number: number): void;
     export let mark: Mark
 
     export default function iopipe(config?: IOPipeConfig): Function;
