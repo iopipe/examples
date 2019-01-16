@@ -3,7 +3,7 @@ import iopipe, { mark, metric, label } from '@iopipe/iopipe';
 
 const run = (event: APIGatewayEvent, context: Context, callback: ProxyCallback): void => {
   console.log('Hello Typescript!');
-  
+
   mark.start('database call');
   // some expensive database query
   mark.end('database call');
