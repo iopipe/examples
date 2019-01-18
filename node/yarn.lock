@@ -69,6 +69,11 @@
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.17.tgz#bbe458225bab095c3e313115182f31f072474940"
   integrity sha512-KV/9fMAvv5428/v4+AP4nDOfSB4sJIBOGgBtv5YbuQVaAEapL1/Bc8IyACZ48Q3hYukVFjzAdVFq94zTxyd5Yw==
 
+"@types/iopipe__iopipe@^1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@types/iopipe__iopipe/-/iopipe__iopipe-1.12.0.tgz#37d3ea31c1e8e5de04f97e5e1e7e669b2ddc61bb"
+  integrity sha512-loBii9tl6FZw2aOAhfernpCgQ6qrHtHsDG/DHLg//KW6W1G7x2GQZERU1CRFx44Inyc3i5JWGUTeU/wrTp2Y8Q==
+
 "@types/node@^10.12.18":
   version "10.12.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"

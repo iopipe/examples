@@ -21,6 +21,7 @@
   "dependencies": {
     "@iopipe/iopipe": "^1.5.0",
     "@types/aws-lambda": "^8.10.17",
+    "@types/iopipe__iopipe": "^1.12.0",
     "@types/node": "^10.12.18",
     "archiver": "^1.3.0",
     "aws-lambda": "^0.1.2",
