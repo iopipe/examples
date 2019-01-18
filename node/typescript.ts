@@ -17,7 +17,7 @@ const run = (event: lambda.APIGatewayEvent, context: lambda.Context, callback: l
 
   callback(null, {
     statusCode: 200,
-    body: "This is my serverless function!"
+    body: "Your function executed successfully!"
   })
 }
 
