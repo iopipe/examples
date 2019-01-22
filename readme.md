@@ -33,6 +33,10 @@ The available handler examples are:
 - index.js : Standard hello world for Node v6+
 - es5.js : Hello world for Node < v6
 - express.js : A lambda built to run from an express app using `aws-serverless-express`
+- typescript.ts : Standard hello world for TypeScript (Be sure to compile with `tsc` before deploying)
+
+### TypeScript dependencies
+We use [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), an open-sourced repository, to manage our declaration files. You can add our types adding `@types/iopipe__iopipe` as a dependency. You may also need `@type/aws-lambda` and `@types/aws-node`.
 
 ## Python
 

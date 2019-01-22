@@ -8,6 +8,9 @@ archive.zip
 python/libs
 .serverless
 
+# Typescript
+node/typescript.js
+
 # Java
 target/
 java/target

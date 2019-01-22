@@ -21,5 +21,6 @@ archive.pipe(output);
 archive.directory(resolve(__dirname, '../node_modules'), '/node_modules');
 archive.file(resolve(__dirname, '../index.js'), {name: 'index.js'});
 archive.file(resolve(__dirname, '../es5.js'), {name: 'es5.js'});
+archive.file(resolve(__dirname, '../typescript.js'), {name: 'typescript.js'});
 
 archive.finalize();
